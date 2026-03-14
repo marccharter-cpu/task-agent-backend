@@ -1,9 +1,16 @@
+export const config = {
+  api: {
+    bodyParser: true,
+  },
+};
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Only POST allowed" });
   }
 
-  const { text } = req.body;
+  const body = req.body || {};
+  const { text } = body;
 
   console.log("Received text:", text);
 
